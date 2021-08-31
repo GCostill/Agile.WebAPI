@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Agile.Models
 {
-    class ContactCreate
+    public class ContactCreate
     {
         [Required]
         public string FirstName { get; set; }

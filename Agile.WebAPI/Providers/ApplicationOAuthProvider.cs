@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Agile.WebAPI.Models;
+using Agile.Data;
 
 namespace Agile.WebAPI.Providers
 {
