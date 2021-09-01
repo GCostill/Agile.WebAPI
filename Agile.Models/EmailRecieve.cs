@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Agile.Models
 {
-    public class EmailCreate
+    public class EmailRecieve
     {
         [Required]
-        public string To { get; set; }
+        public string From { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
