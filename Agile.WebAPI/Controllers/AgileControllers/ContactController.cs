@@ -62,6 +62,17 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             return Ok();
         }
+        
+        [HttpDelete]
+        public IHttpActionResult Delete(string firstName)
+        {
+            var service = CreateContactService();
+
+            if (!service.DeleteContact(firstName))
+                return InternalServerError();
+
+            return Ok();
+        }
 
         public ContactService CreateContactService()
         {

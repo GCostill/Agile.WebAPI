@@ -51,7 +51,6 @@ namespace Agile.Services
                                     EmailAddress = e.EmailAddress
                                 });
                 return query.ToList();
-                //Sql Exception "Invalid column name 'ContactId'"
             }
         }
 
