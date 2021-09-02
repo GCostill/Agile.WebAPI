@@ -1,9 +1,9 @@
-namespace Agile.WebAPI.Migrations
+﻿namespace Agile.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -20,6 +20,11 @@ namespace Agile.WebAPI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(),
+                        EmailAddress = c.String(nullable: false),
+                        PhoneNumber = c.String(),
+                        StreetAddress = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -28,6 +33,13 @@ namespace Agile.WebAPI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        To = c.String(nullable: false),
+                        From = c.String(nullable: false),
+                        Subject = c.String(nullable: false),
+                        Body = c.String(),
+                        HasAttachment = c.Boolean(nullable: false),
+                        Time = c.DateTime(nullable: false),
+                        Category = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

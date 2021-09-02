@@ -13,7 +13,6 @@ namespace Agile.Services
         private readonly Guid _userId;
         private readonly string[] _categories = { "Sent", "Recieved" };
 
-
         public EmailService(Guid userId)
         {
             _userId = userId;
@@ -27,8 +26,8 @@ namespace Agile.Services
                 var entity =
                     new EmailData()
                     {
-                        From = userEmail,
                         To = model.To,
+                        From = userEmail,
                         Subject = model.Subject,
                         Body = model.Body,
                         HasAttachment = model.HasAttachment,
@@ -99,6 +98,67 @@ namespace Agile.Services
                     };
 
                 ctx.Emails.Add(entity);
+
+                return ctx.SaveChanges() > 0;
+            }
+        }
+
+        public List<EmailList> GetAllEmails()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var emails = ctx.Emails.ToList();
+
+                if (emails is null)
+                {
+                    return null;
+                }
+
+                List<EmailList> allEmailsList = new List<EmailList>();
+
+                foreach (EmailData email in emails)
+                {
+
+                    EmailList emailListInbox = new EmailList
+                    {
+                        EmailID = email.Id,
+                        From = email.From,
+                        To = email.To,
+                        Subject = email.Subject,
+                        HasAttachment = email.HasAttachment,
+                        Time = email.Time,
+                        Category = email.Category
+                    };
+                    allEmailsList.Add(emailListInbox);
+
+                }
+
+                return allEmailsList;
+            }
+        }
+
+        public bool DeleteEmail(int ID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var allEmails = ctx.Emails.ToList();
+
+                EmailData emailToDelete = new EmailData();
+
+                foreach (EmailData email in allEmails)
+                {
+                    if (ID == email.Id)
+                    {
+                        emailToDelete = email;
+                    }
+                }
+
+                if (emailToDelete is null)
+                {
+                    return false;
+                }
+
+                ctx.Emails.Remove(emailToDelete);
 
                 return ctx.SaveChanges() > 0;
             }

@@ -63,6 +63,7 @@
     <Compile Include="ContactEdit.cs" />
     <Compile Include="ContactListItem.cs" />
     <Compile Include="EmailCreate.cs" />
+    <Compile Include="EmailList.cs" />
     <Compile Include="EmailRecieve.cs" />
     <Compile Include="EmailReply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
