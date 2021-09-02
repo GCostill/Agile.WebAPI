@@ -16,8 +16,7 @@ namespace Agile.Models
         [Required]
         public string Subject { get; set; }
         [Required]
-        public DateTime Time { get; set; }
-        [Required]
         public string Category { get; set; }
+        
     }
 }

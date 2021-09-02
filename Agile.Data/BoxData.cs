@@ -11,9 +11,11 @@ namespace Agile.Data
     {
         [Key]
         public int Id { get; set; }
+        
+        [Required]
+        public Guid OwnerId { get; set; }
         public string Category { get; set; }
         public string From { get; set; }
         public string Subject { get; set; }
-        public DateTime Time { get; set; }
     }
 }

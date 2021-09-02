@@ -12,4 +12,13 @@ namespace Agile.Models
         [Key]
         public string Category { get; set; }
     }
+
+    public class BoxDetail
+    {
+        public int BoxId { get; set; }
+        public string Category { get; set; }
+        public string To { get; set; }
+        public string From { get; set; }
+        public string Subject { get; set; }
+    }
 }
