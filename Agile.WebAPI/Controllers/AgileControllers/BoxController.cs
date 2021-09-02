@@ -7,7 +7,9 @@ using System.Web.Http;
 
 namespace Agile.WebAPI.Controllers.AgileControllers
 {
+    [Authorize]
     public class BoxController : ApiController
     {
+        private BoxServicce
     }
 }
