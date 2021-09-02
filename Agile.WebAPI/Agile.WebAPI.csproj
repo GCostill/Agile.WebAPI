@@ -215,15 +215,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202108292343003_InitialMigration.cs" />
-    <Compile Include="Migrations\202108292343003_InitialMigration.Designer.cs">
-      <DependentUpon>202108292343003_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108312315069_SecondMigration.cs" />
-    <Compile Include="Migrations\202108312315069_SecondMigration.Designer.cs">
-      <DependentUpon>202108312315069_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -332,14 +323,6 @@
       <Project>{8c7f2ee0-5667-438f-b60e-79de8b649edb}</Project>
       <Name>Agile.Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202108292343003_InitialMigration.resx">
-      <DependentUpon>202108292343003_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108312315069_SecondMigration.resx">
-      <DependentUpon>202108312315069_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

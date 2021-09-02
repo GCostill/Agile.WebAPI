@@ -12,17 +12,16 @@ using System.Web.Http;
 
 namespace Agile.WebAPI.Controllers.AgileControllers
 {
+    [Authorize]
     public class ContactController : ApiController
     {
-        public IHttpActionResult Get()
-        {
-            ContactService contactService = CreateContactService();
-            var contacts = contactService.GetContacts();
-            return Ok(contacts);
-        }
 
+        [HttpPost]
         public IHttpActionResult Post(ContactCreate contact)
         {
+            if (contact is null)
+                return BadRequest();
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -34,6 +33,13 @@ namespace Agile.WebAPI.Controllers.AgileControllers
             return Ok();
         }
 
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            ContactService contactService = CreateContactService();
+            var contacts = contactService.GetContacts();
+            return Ok(contacts);
+        }
         public ContactService CreateContactService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
