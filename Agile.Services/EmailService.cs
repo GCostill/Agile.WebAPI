@@ -129,6 +129,7 @@ namespace Agile.Services
                         Time = email.Time,
                         Category = email.Category
                     };
+
                     allEmailsList.Add(emailListInbox);
 
                 }
