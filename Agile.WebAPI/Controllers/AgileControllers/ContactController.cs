@@ -40,6 +40,29 @@ namespace Agile.WebAPI.Controllers.AgileControllers
             var contacts = contactService.GetContacts();
             return Ok(contacts);
         }
+
+        [HttpGet]
+        public IHttpActionResult Get(string firstName)
+        {
+            ContactService contactService = CreateContactService();
+            var contact = contactService.GetContactByFirstName(firstName);
+            return Ok(contact);
+        }
+
+        [HttpPut]
+        public IHttpActionResult Put(ContactEdit contact)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateContactService();
+
+            if (!service.UpdateContact(contact))
+                return InternalServerError();
+
+            return Ok();
+        }
+
         public ContactService CreateContactService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
