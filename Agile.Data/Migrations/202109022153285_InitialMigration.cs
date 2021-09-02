@@ -1,4 +1,4 @@
-namespace Agile.WebAPI.Migrations
+﻿namespace Agile.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -20,6 +20,12 @@ namespace Agile.WebAPI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        ContactId = c.Guid(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(),
+                        EmailAddress = c.String(nullable: false),
+                        PhoneNumber = c.String(),
+                        StreetAddress = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -28,6 +34,13 @@ namespace Agile.WebAPI.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        To = c.String(nullable: false),
+                        From = c.String(nullable: false),
+                        Subject = c.String(nullable: false),
+                        Body = c.String(),
+                        HasAttachment = c.Boolean(nullable: false),
+                        Time = c.DateTime(nullable: false),
+                        Category = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
