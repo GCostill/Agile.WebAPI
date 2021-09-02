@@ -83,12 +83,12 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             if (emails is null)
             {
-                return BadRequest("No replys exist in the database!");
+                return BadRequest("No emails exist in the database!");
             }
 
             if (emails.Count == 0)
             {
-                return BadRequest("No replys exist in the database!");
+                return BadRequest("No emails exist in the database!");
             }
 
             return Ok(emails);
