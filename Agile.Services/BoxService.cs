@@ -10,19 +10,19 @@ namespace Agile.Services
 {
     public class BoxService
     {
-        /*private readonly Guid _userId;
+        private readonly Guid _userId;
 
         public BoxService(Guid userId)
         {
             _userId = userId;
         }
-        */
 
         public bool CreateBox(BoxCreate model)
         {
             var entity =
                 new BoxData()
                 {
+                    OwnerId = _userId,
                     Category = model.Category,
                 };
 
@@ -38,20 +38,42 @@ namespace Agile.Services
             using (var ctx = new ApplicationDbContext())
             {
             var query =
-                ctx.Boxes
-                .Select(
+                ctx
+                    .Boxes
+                    .Where(e => e.OwnerId == _userId)
+                    .Select(
                     e =>
                         new BoxListItem
                         {
                             BoxId = e.Id,
                             From = e.From,
                             Subject = e.Subject,
-                            Time = e.Time,
                         }
                 );
 
                 return query.ToArray(); 
             }
         }
-    }
+
+        public IEnumerable<BoxListItem> GetEmailsByCategory()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Boxes
+                        .Where(e => e.OwnerId == _userId)
+                        .Select(
+                        e =>
+                            new BoxListItem
+                            {
+                                BoxId = e.Id,
+                                From = e.From,
+                                Subject = e.Subject,
+                            }
+                    );
+
+                return query.ToArray();
+            }
+        }
 }
