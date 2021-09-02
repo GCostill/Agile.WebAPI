@@ -12,7 +12,7 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 {
     public class EmailController : ApiController
     {
-        private EmailService SendEmailService()
+        private EmailService StartEmailService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var emailService = new EmailService(userId);
@@ -26,11 +26,10 @@ namespace Agile.WebAPI.Controllers.AgileControllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = SendEmailService();
+            var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailSendResult = service.SendEmail(emailSend, userEmail);
 
-            if (!emailSendResult)
+            if (!service.SendEmail(emailSend, userEmail))
             {
                 return InternalServerError();
             }
@@ -45,11 +44,10 @@ namespace Agile.WebAPI.Controllers.AgileControllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = SendEmailService();
+            var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailRecieveResult = service.RecieveEmail(emailRecieve, userEmail);
 
-            if (!emailRecieveResult)
+            if (!service.RecieveEmail(emailRecieve, userEmail))
             {
                 return InternalServerError();
             }
@@ -64,19 +62,52 @@ namespace Agile.WebAPI.Controllers.AgileControllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = SendEmailService();
+            var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailSendResult = service.ReplyEmail(emailReply, userEmail);
 
-            if (!emailSendResult)
+            if (!service.ReplyEmail(emailReply, userEmail))
             {
                 return InternalServerError();
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("api/Email")]
+        public IHttpActionResult GetAllEmails()
+        {
+
+            EmailService service = StartEmailService();
+            var emails = service.GetAllEmails();
+
+            if (emails is null)
+            {
+                return BadRequest("No emails exist in the database!");
+            }
+
+            if (emails.Count == 0)
+            {
+                return BadRequest("No emails exist in the database!");
+            }
+
+            return Ok(emails);
+        }
+
+        [HttpDelete]
+        [Route("api/Email")]
+        public IHttpActionResult DeleteEmail([FromUri] int emailId)
+        {
+
+            EmailService service = StartEmailService();
+
+            if (!service.DeleteEmail(emailId))
+            {
+                return InternalServerError();
+            }
+
+            return Ok();
+
         }
     }
 }
