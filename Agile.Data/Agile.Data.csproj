@@ -91,9 +91,9 @@
     <Compile Include="ContactData.cs" />
     <Compile Include="EmailData.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202109022153285_InitialMigration.cs" />
-    <Compile Include="Migrations\202109022153285_InitialMigration.designer.cs">
-      <DependentUpon>202109022153285_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202109022338088_InitialMigration.cs" />
+    <Compile Include="Migrations\202109022338088_InitialMigration.designer.cs">
+      <DependentUpon>202109022338088_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +103,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109022153285_InitialMigration.resx">
-      <DependentUpon>202109022153285_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202109022338088_InitialMigration.resx">
+      <DependentUpon>202109022338088_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
