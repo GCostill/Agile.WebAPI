@@ -28,9 +28,8 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailSendResult = service.SendEmail(emailSend, userEmail);
 
-            if (!emailSendResult)
+            if (!service.SendEmail(emailSend, userEmail))
             {
                 return InternalServerError();
             }
@@ -47,9 +46,8 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailRecieveResult = service.RecieveEmail(emailRecieve, userEmail);
 
-            if (!emailRecieveResult)
+            if (!service.RecieveEmail(emailRecieve, userEmail))
             {
                 return InternalServerError();
             }
@@ -66,9 +64,8 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             var service = StartEmailService();
             var userEmail = User.Identity.GetUserName();
-            bool emailSendResult = service.ReplyEmail(emailReply, userEmail);
 
-            if (!emailSendResult)
+            if (!service.ReplyEmail(emailReply, userEmail))
             {
                 return InternalServerError();
             }
@@ -103,9 +100,8 @@ namespace Agile.WebAPI.Controllers.AgileControllers
         {
 
             EmailService service = StartEmailService();
-            var emailDelete = service.DeleteEmail(emailId);
 
-            if (!emailDelete)
+            if (!service.DeleteEmail(emailId))
             {
                 return InternalServerError();
             }
