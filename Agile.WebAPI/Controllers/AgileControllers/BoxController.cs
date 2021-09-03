@@ -13,21 +13,22 @@ namespace Agile.WebAPI.Controllers.AgileControllers
     [Authorize]
     public class BoxController : ApiController
     {
+        private BoxService CreateBoxService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var boxService = new BoxService(userId);
+            return boxService;
+        }
 
+        [HttpGet]
         public IHttpActionResult Get()
         {
             BoxService boxService = CreateBoxService();
-            var boxes = boxService.GetEmails();
+            var boxes = boxService.GetAllEmails();
             return Ok(boxes);
         }   
 
-       public IHttpActionResult Get(string category)
-        {
-            BoxService boxService = CreateBoxService();
-            var box = boxService.GetBoxByCategory(category);
-            return Ok(box);
-        }
-
+        [HttpPost]
         public IHttpActionResult Post (BoxCreate box)
         {
             if (!ModelState.IsValid)
@@ -39,11 +40,12 @@ namespace Agile.WebAPI.Controllers.AgileControllers
 
             return Ok();
         }
-        private BoxService CreateBoxService()
+        
+        public IHttpActionResult Get(string category)
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var boxService = new BoxService(userId);
-            return boxService;
+            BoxService boxService = CreateBoxService();
+            var box = boxService.GetBoxByCategory(category);
+            return Ok(box);
         }
     }
 }

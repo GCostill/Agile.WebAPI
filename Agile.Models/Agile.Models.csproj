@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoxCreate.cs" />
+    <Compile Include="BoxDetail.cs" />
     <Compile Include="BoxListItem.cs" />
     <Compile Include="ContactCreate.cs" />
     <Compile Include="ContactEdit.cs" />

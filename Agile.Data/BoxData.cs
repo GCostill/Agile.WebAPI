@@ -14,7 +14,9 @@ namespace Agile.Data
         
         [Required]
         public Guid OwnerId { get; set; }
+
         public string Category { get; set; }
+        public string To  { get; set; }
         public string From { get; set; }
         public string Subject { get; set; }
     }

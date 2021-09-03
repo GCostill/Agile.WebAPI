@@ -10,15 +10,16 @@ namespace Agile.Models
     public class BoxCreate
     {
         [Key]
-        public string Category { get; set; }
-    }
-
-    public class BoxDetail
-    {
         public int BoxId { get; set; }
-        public string Category { get; set; }
+        
+        [Required]
         public string To { get; set; }
+        [Required]
         public string From { get; set; }
+        [Required]
         public string Subject { get; set; }
+        
+        [Required]
+        public string Category { get; set; }
     }
 }

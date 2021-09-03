@@ -33,29 +33,7 @@ namespace Agile.Services
             }
         }
 
-        public IEnumerable<BoxListItem> GetEmails()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-            var query =
-                ctx
-                    .Boxes
-                    .Where(e => e.OwnerId == _userId)
-                    .Select(
-                    e =>
-                        new BoxListItem
-                        {
-                            BoxId = e.Id,
-                            From = e.From,
-                            Subject = e.Subject,
-                        }
-                );
-
-                return query.ToArray(); 
-            }
-        }
-
-        public IEnumerable<BoxListItem> GetEmailsByCategory()
+        public IEnumerable<BoxListItem> GetAllEmails()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -76,4 +54,25 @@ namespace Agile.Services
                 return query.ToArray();
             }
         }
+
+        
+        public BoxDetail GetBoxByCategory(string category)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Boxes
+                        .Single(e => e.Category == category && e.OwnerId == _userId);
+                    return
+                        new BoxDetail
+                        {
+                            Id = entity.Id,
+                            To = entity.To,
+                            From = entity.From,
+                            Subject = entity.Subject
+                        };
+            }
+        }
+    }
 }
